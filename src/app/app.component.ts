@@ -28,4 +28,24 @@ export class AppComponent {
     buttonIsDisabled: true,
     labelTitle: 'Progress Bar:',
   };
+
+  // en el componente no puede ser privado si va a ser
+  // usando en app.html
+  toggleButton() {
+    this.btnIsDisable = !this.btnIsDisable;
+  }
+
+  increaseAge() {
+    this.person.age += 1;
+  }
+
+  onScroll(event: Event) {
+    const element = event.target as HTMLElement;
+    console.log(element.scrollTop);
+  }
+
+  changeName(event: Event) {
+    const element = event.target as HTMLInputElement;
+    this.person.name = element.value;
+  }
 }
