@@ -12,3 +12,20 @@
 <h3>Hi im {{name.toUpperCase()}} and my age is {{age}}</h3>
 <p>The name of this app is <strong>{{title}}</strong></p>
 <img src="{{ imgUrl }}" alt="img-random" />
+
+<!--Practice Example-->
+<section>
+  <label [for]="ComponentData.progressBarId"
+    >{{ ComponentData.labelTitle }}</label
+  >
+  <progress
+    [id]="ComponentData.progressBarId"
+    max="100"
+    [value]="ComponentData.progressBarVal"
+  >
+    {{ ComponentData.progressBarVal }}
+  </progress>
+  <button [disabled]="ComponentData.buttonIsDisabled">
+    {{ ComponentData.buttonText }}
+  </button>
+</section>

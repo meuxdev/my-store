@@ -20,4 +20,12 @@ export class AppComponent {
     age: 24,
     avatar: 'https://source.unsplash.com/random',
   };
+
+  ComponentData = {
+    progressBarVal: 43,
+    progressBarId: 'ProgressUniqueId',
+    buttonText: 'Random Button',
+    buttonIsDisabled: true,
+    labelTitle: 'Progress Bar:',
+  };
 }
