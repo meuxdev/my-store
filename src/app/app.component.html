@@ -2,7 +2,7 @@
 <h1>Properties</h1>
 <button [disabled]="btnIsDisable">Send</button>
 <input type="text" [value]="person.name" />
-<progress max="100" [value]="person.age"></progress>
+<progress max="100" [value]="person.age">{{ person.age }}%</progress>
 <img [src]="person.avatar" width="100px" alt="small random image" />
 
 <!--String interpolation-->
