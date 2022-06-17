@@ -1,3 +1,18 @@
+<p>Name: {{ person.name }}</p>
+<p>Name Valid: {{ nameInput.valid }}</p>
+<p>Age: {{ person.age }}</p>
+<p>Age Valid: {{ ageInput.valid }}</p>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
+<input
+  type="number"
+  max="100"
+  min="18"
+  #ageInput="ngModel"
+  [(ngModel)]="person.age"
+/>
+
+<!--Event Binding-->
+
 <p>Age: {{person.age}}</p>
 <button (click)="toggleButton()">Toggle Button</button>
 <button (click)="increaseAge()">Make me older</button>
