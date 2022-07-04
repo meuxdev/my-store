@@ -1,20 +1,18 @@
-<!--! *ngFor -->
+<!--! [ngSwitch] -->
+<!--! *ngSwitchCase -->
 
-<h1>*ngFor class</h1>
-<h3>Shopping List</h3>
-<section id="ShoppingSection-Display">
-  <p *ngIf="shoppingList.length === 0">
-    No products added to the shopping list.
+<section>
+  <input type="text"  required #nameInput [(ngModel)]="person.name">
+</section>
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'Alejandro'">
+    Alejandro is a nice name!
   </p>
-  <ul>
-    <li *ngFor="let product of products">
-      <img width="250" [src]="product.image" [alt]="product.name">
-      <h2>{{ product.price }}</h2>
-      <p>{{ product.name}}</p>
-    </li>
-  </ul>
-</section>
-<section id="ShoppingSection-Input">
-  <input type="text" placeholder="Example: Soap for my dishes" required [(ngModel)]="newProduct" />
-  <button (click)="addProductToList()"> Add Product to buy. </button>
-</section>
+  <p *ngSwitchCase="'Fernanda'">
+    Fernanda is a pretty name!
+  </p>
+  <p *ngSwitchCase="'Roberto'">
+    Roberto is a great name!
+  </p>
+  <p *ngSwitchDefault> Your name is a little generic, Just kidding! </p>
+</div>
