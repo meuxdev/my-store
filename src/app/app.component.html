@@ -1,77 +1,19 @@
-<!--! NG IF -->
-<!-- Accessing from the class value -->
-<p *ngIf="person.age > 21 && person.age < 50; else elseBlockForAge">You are an adult in USA.</p>
-<p *ngIf="person.name.toUpperCase() == 'Alex'.toUpperCase(); else elseBlockForName">Alex is a cool name.</p>
+<!--! *ngFor -->
 
-<ng-template #elseBlockForAge >
-  <p *ngIf="person.age < 21; else elseBlockAgeOld">You are a kiddo</p>
-</ng-template>
-
-<ng-template #elseBlockAgeOld>
-  <p>You are an ancient</p>
-</ng-template>
-
-<ng-template #elseBlockForName>
-  <p>Your name is not Alex</p>
-</ng-template>
-
-<!-- Accessing to the value from the ng Model. -->
-<p *ngIf="ageInput.value > 21">You are an adult in USA.</p>
-<p *ngIf="nameInput.value == 'Alex'">Alex is a cool name.</p>
-
-
-<!--! Engine Model -->
-<p>Name: {{ person.name }}</p>
-<p>Name Valid: {{ nameInput.valid }}</p>
-<p>Age: {{ person.age }}</p>
-<p>Age Valid: {{ ageInput.valid }}</p>
-<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
-<input type="number" max="100" min="18" #ageInput="ngModel" [(ngModel)]="person.age" />
-
-
-<!--! Event Binding-->
-
-<p>Age: {{person.age}}</p>
-<button (click)="toggleButton()">Toggle Button</button>
-<button (click)="increaseAge()">Make me older</button>
-<div class="box" (scroll)="onScroll($event)">
-  <p>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the
-    1500s, when an unknown printer took a galley of type and scrambled it to
-    make a type specimen book. It has survived not only five centuries, but also
-    the leap into electronic typesetting, remaining essentially unchanged. It
-    was popularised in the 1960s with the release of Letraset sheets containing
-    Lorem Ipsum passages, and more recently with desktop publishing software
-    like Aldus PageMaker including versions of Lorem Ipsum.
+<h1>*ngFor class</h1>
+<h3>Shopping List</h3>
+<section id="ShoppingSection-Display">
+  <p *ngIf="shoppingList.length === 0">
+    No products added to the shopping list.
   </p>
-</div>
-<input type="text" [value]="person.name" (keyup)="changeName($event)" />
-
-<!--! Property Binding-->
-<h1>Properties</h1>
-<button [disabled]="btnIsDisable">Send</button>
-<input type="text" [value]="person.name" />
-<progress max="100" [value]="person.age">{{ person.age }}%</progress>
-<img [src]="person.avatar" width="100px" alt="small random image" />
-
-<!--! String interpolation-->
-<h1>Hola mundo</h1>
-<h2>{{ "Hola mundo".repeat(5) }}</h2>
-<p>3 + 3 = {{ 3 + 3 }}</p>
-<h3>Hi im {{person.name.toUpperCase()}} and my age is {{age}}</h3>
-<p>The name of this app is <strong>{{title}}</strong></p>
-<img src="{{ imgUrl }}" alt="img-random" />
-
-<!--! Practice Example-->
-<section>
-  <label [for]="ComponentData.progressBarId">{{ ComponentData.labelTitle }}</label>
-  <progress [id]="ComponentData.progressBarId" max="100" [value]="ComponentData.progressBarVal">
-    {{ ComponentData.progressBarVal }}
-  </progress>
-  <button [disabled]="ComponentData.buttonIsDisabled">
-    {{ ComponentData.buttonText }}
-  </button>
+  <ul>
+    <li *ngFor="let item of shoppingList; index as i">
+      {{ i + 1 }} - {{ item }}
+      <button (click)="deleteProduct(i)">❌</button>
+    </li>
+  </ul>
 </section>
-
-
+<section id="ShoppingSection-Input">
+  <input type="text" placeholder="Example: Soap for my dishes" required [(ngModel)]="newProduct" />
+  <button (click)="addProductToList()"> Add Product to buy. </button>
+</section>

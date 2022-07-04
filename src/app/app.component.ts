@@ -29,6 +29,13 @@ export class AppComponent {
     labelTitle: 'Progress Bar:',
   };
 
+  // shoppingList: string[] | number[] = ['Tomatoes', 'Carrots', 'Cereal', 'Meat'];
+  // shoppingList: any = ['Tomatoes', 'Carrots', 'Cereal', 'Meat'];
+  shoppingList: string[] = ['Tomatoes', 'Carrots', 'Cereal', 'Meat'];
+  newProduct = "";
+
+
+
   // en el componente no puede ser privado si va a ser
   // usando en app.html
   toggleButton() {
@@ -47,5 +54,14 @@ export class AppComponent {
   changeName(event: Event) {
     const element = event.target as HTMLInputElement;
     this.person.name = element.value;
+  }
+
+  addProductToList(){
+    this.shoppingList.push(this.newProduct);
+    this.newProduct = "";
+  }
+
+  deleteProduct(index: number) {
+    this.shoppingList.splice(index, 1);
   }
 }
