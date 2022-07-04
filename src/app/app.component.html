@@ -3,12 +3,16 @@
 <p *ngIf="person.age > 21 && person.age < 50; else elseBlockForAge">You are an adult in USA.</p>
 <p *ngIf="person.name.toUpperCase() == 'Alex'.toUpperCase(); else elseBlockForName">Alex is a cool name.</p>
 
-<ng-template #elseBlockForName>
-  <p>Block else</p>
+<ng-template #elseBlockForAge >
+  <p *ngIf="person.age < 21; else elseBlockAgeOld">You are a kiddo</p>
 </ng-template>
 
-<ng-template #elseBlockForAge>
-  <p>Block else</p>
+<ng-template #elseBlockAgeOld>
+  <p>You are an ancient</p>
+</ng-template>
+
+<ng-template #elseBlockForName>
+  <p>Your name is not Alex</p>
 </ng-template>
 
 <!-- Accessing to the value from the ng Model. -->
