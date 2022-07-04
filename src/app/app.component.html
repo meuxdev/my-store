@@ -1,17 +1,31 @@
+<!--! NG IF -->
+<!-- Accessing from the class value -->
+<p *ngIf="person.age > 21 && person.age < 50; else elseBlockForAge">You are an adult in USA.</p>
+<p *ngIf="person.name.toUpperCase() == 'Alex'.toUpperCase(); else elseBlockForName">Alex is a cool name.</p>
+
+<ng-template #elseBlockForName>
+  <p>Block else</p>
+</ng-template>
+
+<ng-template #elseBlockForAge>
+  <p>Block else</p>
+</ng-template>
+
+<!-- Accessing to the value from the ng Model. -->
+<p *ngIf="ageInput.value > 21">You are an adult in USA.</p>
+<p *ngIf="nameInput.value == 'Alex'">Alex is a cool name.</p>
+
+
+<!--! Engine Model -->
 <p>Name: {{ person.name }}</p>
 <p>Name Valid: {{ nameInput.valid }}</p>
 <p>Age: {{ person.age }}</p>
 <p>Age Valid: {{ ageInput.valid }}</p>
 <input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
-<input
-  type="number"
-  max="100"
-  min="18"
-  #ageInput="ngModel"
-  [(ngModel)]="person.age"
-/>
+<input type="number" max="100" min="18" #ageInput="ngModel" [(ngModel)]="person.age" />
 
-<!--Event Binding-->
+
+<!--! Event Binding-->
 
 <p>Age: {{person.age}}</p>
 <button (click)="toggleButton()">Toggle Button</button>
@@ -30,14 +44,14 @@
 </div>
 <input type="text" [value]="person.name" (keyup)="changeName($event)" />
 
-<!--Property Binding-->
+<!--! Property Binding-->
 <h1>Properties</h1>
 <button [disabled]="btnIsDisable">Send</button>
 <input type="text" [value]="person.name" />
 <progress max="100" [value]="person.age">{{ person.age }}%</progress>
 <img [src]="person.avatar" width="100px" alt="small random image" />
 
-<!--String interpolation-->
+<!--! String interpolation-->
 <h1>Hola mundo</h1>
 <h2>{{ "Hola mundo".repeat(5) }}</h2>
 <p>3 + 3 = {{ 3 + 3 }}</p>
@@ -45,19 +59,15 @@
 <p>The name of this app is <strong>{{title}}</strong></p>
 <img src="{{ imgUrl }}" alt="img-random" />
 
-<!--Practice Example-->
+<!--! Practice Example-->
 <section>
-  <label [for]="ComponentData.progressBarId"
-    >{{ ComponentData.labelTitle }}</label
-  >
-  <progress
-    [id]="ComponentData.progressBarId"
-    max="100"
-    [value]="ComponentData.progressBarVal"
-  >
+  <label [for]="ComponentData.progressBarId">{{ ComponentData.labelTitle }}</label>
+  <progress [id]="ComponentData.progressBarId" max="100" [value]="ComponentData.progressBarVal">
     {{ ComponentData.progressBarVal }}
   </progress>
   <button [disabled]="ComponentData.buttonIsDisabled">
     {{ ComponentData.buttonText }}
   </button>
 </section>
+
+
