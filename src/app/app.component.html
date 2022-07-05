@@ -1,8 +1,8 @@
 <!--! [ngSwitch] -->
 <!--! *ngSwitchCase -->
-
 <section>
-  <input type="text"  required #nameInput [(ngModel)]="person.name">
+  <!-- <label [style.font-style]="imgWidth.invalid ? 'italic' : 'normal'" for="nameInput">Name</label> -->
+  <input name="nameInput" type="text"  required #nameInput="ngModel" [(ngModel)]="person.name">
 </section>
 <div [ngSwitch]="person.name">
   <p *ngSwitchCase="'Alejandro'">
@@ -16,6 +16,27 @@
   </p>
   <p *ngSwitchDefault> Your name is a little generic, Just kidding! </p>
 </div>
+
+
+<!-- Class & Style -->
+<p class="message-error" [class.invalid]="nameInput.invalid"> 
+  Introduce a name please.
+</p>
+
+<p [style.font-style]=" nameInput.invalid ? 'italic' : 'normal' ">
+  Text text text
+</p>
+
+<div class="style-image">
+  <div>
+    <input type="text" required [(ngModel)]="widthImg">
+  </div>
+  <div>
+    <img [src]="products[1].image" [alt]="products[1].name" [style.width.px]="widthImg"/>
+  </div>
+</div>
+
+
 
  <!-- Product List -->
 <section class="products--grid">

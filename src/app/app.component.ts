@@ -17,6 +17,8 @@ export class AppComponent {
   btnIsDisable = true;
   nameInput = 'input random name';
 
+  widthImg = 10;
+
   person = {
     name: 'Alejandro',
     age: 24,
