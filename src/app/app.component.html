@@ -17,6 +17,26 @@
   <p *ngSwitchDefault> Your name is a little generic, Just kidding! </p>
 </div>
 
+<hr  class="line-error" [ngClass]="{
+  'valid':  nameInput.valid,
+  'invalid': nameInput.invalid
+}"/>
+
+<div class="styles">
+  <div>
+    <input type="number" [(ngModel)]="box.height">
+    <input type="number" [(ngModel)]="box.width">
+    <input type="color" [(ngModel)]="box.background">
+  </div>
+  <div>
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      'background-color': box.background,
+      'display': 'block'
+    }"></div>
+  </div>
+</div>
 
 <!-- Class & Style -->
 <p class="message-error" [class.invalid]="nameInput.invalid"> 
