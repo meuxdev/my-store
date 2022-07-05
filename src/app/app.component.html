@@ -16,3 +16,14 @@
   </p>
   <p *ngSwitchDefault> Your name is a little generic, Just kidding! </p>
 </div>
+
+ <!-- Product List -->
+<section class="products--grid">
+  <ul *ngFor="let product of products">
+    <li>
+      <img [src]="product.image" [alt]="product.name"/>
+      <h2>$ {{ product.price }}</h2>
+      <p> {{ product.name }} </p>
+    </li>
+  </ul>
+</section>
