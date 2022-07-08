@@ -1,8 +1,33 @@
+<h1>Form</h1>
+<form (ngSubmit)="onRegister()" #registerForm="ngForm">
+  <!-- Name -->
+  <div class="input.group">
+    <label for="name">Name: </label>
+    <input required type="text" id="name" [(ngModel)]="register.name" name="name">
+    <p>Msg Error</p>
+  </div>
+  <!-- Email -->
+  <div class="input.group">
+    <label for="email">Name: </label>
+    <input required type="email" id="email" [(ngModel)]="register.email" name="email">
+    <p>Msg Error</p>
+  </div>
+  <!-- Password -->
+  <div class="input.group">
+    <label for="password">Name: </label>
+    <input required type="password" id="password" [(ngModel)]="register.password" name="password">
+    <p>Msg Error</p>
+  </div>
+
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  <button type="button">Action</button>
+</form>
+
 <!--! [ngSwitch] -->
 <!--! *ngSwitchCase -->
 <section>
   <!-- <label [style.font-style]="imgWidth.invalid ? 'italic' : 'normal'" for="nameInput">Name</label> -->
-  <input name="nameInput" type="text"  required #nameInput="ngModel" [(ngModel)]="person.name">
+  <input name="nameInput" type="text" required #nameInput="ngModel" [(ngModel)]="person.name">
 </section>
 <div [ngSwitch]="person.name">
   <p *ngSwitchCase="'Alejandro'">
@@ -17,10 +42,10 @@
   <p *ngSwitchDefault> Your name is a little generic, Just kidding! </p>
 </div>
 
-<hr  class="line-error" [ngClass]="{
+<hr class="line-error" [ngClass]="{
   'valid':  nameInput.valid,
   'invalid': nameInput.invalid
-}"/>
+}" />
 
 <div class="styles">
   <div>
@@ -39,7 +64,7 @@
 </div>
 
 <!-- Class & Style -->
-<p class="message-error" [class.invalid]="nameInput.invalid"> 
+<p class="message-error" [class.invalid]="nameInput.invalid">
   Introduce a name please.
 </p>
 
@@ -52,17 +77,17 @@
     <input type="text" required [(ngModel)]="widthImg">
   </div>
   <div>
-    <img [src]="products[1].image" [alt]="products[1].name" [style.width.px]="widthImg"/>
+    <img [src]="products[1].image" [alt]="products[1].name" [style.width.px]="widthImg" />
   </div>
 </div>
 
 
 
- <!-- Product List -->
+<!-- Product List -->
 <section class="products--grid">
   <ul *ngFor="let product of products">
     <li>
-      <img [src]="product.image" [alt]="product.name"/>
+      <img [src]="product.image" [alt]="product.name" />
       <h2>$ {{ product.price }}</h2>
       <p> {{ product.name }} </p>
     </li>

@@ -31,6 +31,13 @@ export class AppComponent {
     avatar: 'https://source.unsplash.com/random',
   };
 
+
+  register = {
+    name: '',
+    email: '',
+    password: '',
+  }
+
   ComponentData = {
     progressBarVal: 43,
     progressBarId: 'ProgressUniqueId',
@@ -107,5 +114,9 @@ export class AppComponent {
 
   deleteProduct(index: number) {
     this.shoppingList.splice(index, 1);
+  }
+
+  onRegister() {
+    console.log(this.register);
   }
 }
