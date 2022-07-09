@@ -1,1 +1,5 @@
-<p>img works!</p>
+<img width="200" (load)="imgLoaded()" (error)="imgError()" [src]="img" *ngIf="img; else imgElse"/>
+
+<ng-template #imgElse>
+    <img width="200" [src]="imgDefault" alt="random-default-image">
+</ng-template>
