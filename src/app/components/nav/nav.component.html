@@ -1,8 +1,20 @@
 <header class="header">
   <a href="#" class="logo">CompanyLogo</a>
   <div class="header-right">
-    <a href="#">Home</a>
-    <a class="active" href="#">Catalogo</a>
-    <a href="#">About</a>
+    <a href="#" (click)="sideMenuClick()">More</a>
   </div>
 </header>
+<div class="side-menu" [class.active]="activeSideMenu">
+  <button type="button" (click)="sideMenuClick()">x</button>
+  <ul>
+    <li>
+      <a href="">All</a>
+    </li>
+    <li>
+      <a href="">Clothes</a>
+    </li>
+    <li>
+      <a href="">Electronics</a>
+    </li>
+  </ul>
+</div>

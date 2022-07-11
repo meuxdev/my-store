@@ -16,14 +16,14 @@
       font-weight: bold;
     }
   }
-//   a:hover {
-//     background-color: #ddd;
-//     color: black;
-//   }
-//   a.active {
-//     background-color: dodgerblue;
-//     color: white;
-//   }
+  //   a:hover {
+  //     background-color: #ddd;
+  //     color: black;
+  //   }
+  //   a.active {
+  //     background-color: dodgerblue;
+  //     color: white;
+  //   }
   .header-right {
     float: right;
   }
@@ -40,5 +40,48 @@
     .header-right {
       float: none;
     }
+  }
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transform: translateX(-100%);
+  transition: all ease-in-out .5s;
+
+  li {
+    list-style: none;
+    margin: 2rem 2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+  }
+
+  button {
+    width: 5%;
+    margin: 2% 90%;
+    font-size: 1.5rem;
+    border: 0;
+    border-radius: 100%;
+    background-color: aliceblue;
+
+    &:hover {
+       cursor: pointer; 
+       transform: scale(1.2);
+    }
+  }
+
+  &.active {
+    transform: translate(0);
   }
 }
