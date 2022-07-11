@@ -1,9 +1,12 @@
 <!-- Image -->
-<img width="200" (load)="imgLoaded()" (error)="imgError()" [src]="img" *ngIf="img; else imgElse"/>
+<img
+  (load)="imgLoaded()"
+  (error)="imgError()"
+  [src]="img"
+  *ngIf="img; else imgElse"
+/>
 
 <!-- Default Image -->
 <ng-template #imgElse>
-    <img width="200" [src]="imgDefault" alt="random-default-image">
+  <img [src]="imgDefault" alt="random-default-image" />
 </ng-template>
-
-
