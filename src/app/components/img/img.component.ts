@@ -13,7 +13,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   set setImg(newImg: string) {
     this.img = newImg;
     // apply code 
-    console.log("Changing Just img", this.img);
+    // console.log("Changing Just img", this.img);
 
   };
 
@@ -35,25 +35,25 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // DO NOT run async.
     // before render
     // runs once every instance created.
-    console.log(`Creating the constructor...\n imgValue => ${this.img}`);
+    // console.log(`Creating the constructor...\n imgValue => ${this.img}`);
   }
 
   ngOnInit(): void {
     // Before rendering
     // RUN async functions fetch. Promises. etc. 
     // Runs only once
-    console.log(`ngOnInit...\n imgValue => ${this.img}`);
-    this.counterFuncRef = window.setInterval(() => {
-      this.counter += 1;
-      console.log('run counter');
-    }, 1000);
+    // console.log(`ngOnInit...\n imgValue => ${this.img}`);
+    // this.counterFuncRef = window.setInterval(() => {
+    //   this.counter += 1;
+    //   console.log('run counter');
+    // }, 1000);
   }
 
   ngAfterViewInit(): void {
     // after rendering.
     // handler children.
     // Components children had already been rendering.
-    console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
+    // console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,10 +65,10 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // code to review each change
     // }
     const { setImg: { currentValue, previousValue } } = changes;
-    console.log("Current Value: ", currentValue);
-    console.log("Prev Value: ", previousValue);
+    // console.log("Current Value: ", currentValue);
+    // console.log("Prev Value: ", previousValue);
 
-    console.log(`ngOnChange...\n imgValue => ${this.img}`);
+    // console.log(`ngOnChange...\n imgValue => ${this.img}`);
   }
 
   ngOnDestroy(): void {
@@ -76,8 +76,8 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // Some events will continue exc. even if the component
     // was destroyed.
     // Kill all events.
-    window.clearInterval(this.counterFuncRef);
-    console.log("Destroying the component...");
+    // window.clearInterval(this.counterFuncRef);
+    // console.log("Destroying the component...");
 
   }
 
@@ -88,7 +88,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   }
 
   imgLoaded() {
-    console.log("Loaded Successfully.");
+    // console.log("Loaded Successfully.");
     this.loaded.emit(this.img);
   }
 

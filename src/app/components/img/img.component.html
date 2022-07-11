@@ -1,6 +1,7 @@
+<!-- Image -->
 <img width="200" (load)="imgLoaded()" (error)="imgError()" [src]="img" *ngIf="img; else imgElse"/>
 
-<h1>Counter: {{ counter }}</h1>
+<!-- Default Image -->
 <ng-template #imgElse>
     <img width="200" [src]="imgDefault" alt="random-default-image">
 </ng-template>
