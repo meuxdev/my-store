@@ -1,6 +1,7 @@
-<h1>
-  {{ shoppingCart.length }} Total Price: {{ getTotalPrice() }}
-</h1>
+<h1>{{ shoppingCart.length }} Total Price: {{ getTotalPrice() }}</h1>
+<p>Today: {{ today | date: "short" }}</p>
+<p>Other date: {{ otherDate | date: "yy.dd.MM" }}</p>
+<p>{{ "HoLa COmo EsTaS" | uppercase }}</p>
 <section class="products--grid">
   <app-product
     [product]="product"
