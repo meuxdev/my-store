@@ -1,5 +1,6 @@
 <h1>{{ shoppingCart.length }} Total Price: {{ getTotalPrice() }}</h1>
 <p>Today: {{ today | date: "short" }}</p>
+<p>My pipe: {{ today | timeAgo }}</p>
 <p>Other date: {{ otherDate | date: "yy.dd.MM" }}</p>
 <p>{{ "HoLa COmo EsTaS" | uppercase }}</p>
 <section class="products--grid">
