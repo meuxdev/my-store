@@ -31,7 +31,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   counter: number = 0;
 
-  counterFuncRef: number | undefined;
+  // counterFuncRef: number | undefined;
 
   constructor() {
     // DO NOT run async.
@@ -40,48 +40,50 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // console.log(`Creating the constructor...\n imgValue => ${this.img}`);
   }
 
-  // ngOnInit(): void {
-  //   // Before rendering
-  //   // RUN async functions fetch. Promises. etc. 
-  //   // Runs only once
-  //   // console.log(`ngOnInit...\n imgValue => ${this.img}`);
-  //   // this.counterFuncRef = window.setInterval(() => {
-  //   //   this.counter += 1;
-  //   //   console.log('run counter');
-  //   // }, 1000);
-  // }
+  ngOnInit(): void {
+    // Before rendering
+    // RUN async functions fetch. Promises. etc. 
+    // Runs only once
+    // console.log(`ngOnInit...\n imgValue => ${this.img}`);
+    // this.counterFuncRef = window.setInterval(() => {
+    //   this.counter += 1;
+    //   console.log('run counter');
+    // }, 1000);
+    console.log("Init State");
+    
+  }
 
-  // ngAfterViewInit(): void {
-  //   // after rendering.
-  //   // handler children.
-  //   // Components children had already been rendering.
-  //   // console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
-  // }
+  ngAfterViewInit(): void {
+    // after rendering.
+    // handler children.
+    // Components children had already been rendering.
+    console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     // before render
     // changes on inputs -- multiple times
     // runs every time the input status this will run. 
 
-    // if(changes){
+    if(changes){
     // code to review each change
-    // }
+    }
     const { setImg: { currentValue, previousValue } } = changes;
-    // console.log("Current Value: ", currentValue);
-    // console.log("Prev Value: ", previousValue);
+    console.log("Current Value: ", currentValue);
+    console.log("Prev Value: ", previousValue);
 
-    // console.log(`ngOnChange...\n imgValue => ${this.img}`);
+    console.log(`ngOnChange...\n imgValue = ${this.img}`);
   }
 
-  // ngOnDestroy(): void {
-  //   // Clean Events.
-  //   // Some events will continue exc. even if the component
-  //   // was destroyed.
-  //   // Kill all events.
-  //   // window.clearInterval(this.counterFuncRef);
-  //   // console.log("Destroying the component...");
+  ngOnDestroy(): void {
+    // Clean Events.
+    // Some events will continue exc. even if the component
+    // was destroyed.
+    // Kill all events.
+    // window.clearInterval(this.counterFuncRef);
+    console.log("Destroying the component...");
 
-  // }
+  }
 
 
 
