@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   activeSideMenu: boolean = false;
+  counter!: number;
 
-  constructor() {}
+  constructor(private storeService: StoreService) {}
+
+  ngOnInit(): void {
+    this.storeService.myCart$.subscribe((products) => {
+      this.counter = products.length;
+    });
+  }
 
   sideMenuClick() {
     // alert('Close side bar');
     this.activeSideMenu = !this.activeSideMenu;
   }
-
-  ngOnInit(): void {}
 }
