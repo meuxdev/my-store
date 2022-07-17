@@ -9,16 +9,18 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   img: string = '';
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('img')
   set setImg(newImg: string) {
     this.img = newImg;
     // apply code 
     // console.log("Changing Just img", this.img);
-
   };
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("name") firstName: string = "";
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("hello") set alertHello(firstName: string) {
     alert(`Hello ${firstName}`);
   }
@@ -38,23 +40,23 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // console.log(`Creating the constructor...\n imgValue => ${this.img}`);
   }
 
-  ngOnInit(): void {
-    // Before rendering
-    // RUN async functions fetch. Promises. etc. 
-    // Runs only once
-    // console.log(`ngOnInit...\n imgValue => ${this.img}`);
-    // this.counterFuncRef = window.setInterval(() => {
-    //   this.counter += 1;
-    //   console.log('run counter');
-    // }, 1000);
-  }
+  // ngOnInit(): void {
+  //   // Before rendering
+  //   // RUN async functions fetch. Promises. etc. 
+  //   // Runs only once
+  //   // console.log(`ngOnInit...\n imgValue => ${this.img}`);
+  //   // this.counterFuncRef = window.setInterval(() => {
+  //   //   this.counter += 1;
+  //   //   console.log('run counter');
+  //   // }, 1000);
+  // }
 
-  ngAfterViewInit(): void {
-    // after rendering.
-    // handler children.
-    // Components children had already been rendering.
-    // console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
-  }
+  // ngAfterViewInit(): void {
+  //   // after rendering.
+  //   // handler children.
+  //   // Components children had already been rendering.
+  //   // console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
+  // }
 
   ngOnChanges(changes: SimpleChanges): void {
     // before render
@@ -71,15 +73,15 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // console.log(`ngOnChange...\n imgValue => ${this.img}`);
   }
 
-  ngOnDestroy(): void {
-    // Clean Events.
-    // Some events will continue exc. even if the component
-    // was destroyed.
-    // Kill all events.
-    // window.clearInterval(this.counterFuncRef);
-    // console.log("Destroying the component...");
+  // ngOnDestroy(): void {
+  //   // Clean Events.
+  //   // Some events will continue exc. even if the component
+  //   // was destroyed.
+  //   // Kill all events.
+  //   // window.clearInterval(this.counterFuncRef);
+  //   // console.log("Destroying the component...");
 
-  }
+  // }
 
 
 
