@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProduct, ICreateProductDto } from '../models/product.model';
+import { IProduct, ICreateProductDto, IUpdateProductDto } from '../models/product.model';
 import { StoreService } from './store.service';
 
 @Injectable({
@@ -22,5 +22,14 @@ export class ProductsService {
 
   create(dto: ICreateProductDto) {
     return this.http.post<IProduct>(this.baseURL, dto);
+  }
+
+  update(id: string, dto: IUpdateProductDto ) {
+    //PUT needs to send all the information of the model
+    // Even if the change is just in one attribute
+
+    // PATCH needs just the specific field to update,
+    // just updates a partial part of the objs
+    return this.http.put<IProduct>(`${this.baseURL}/${id}`, dto);
   }
 }

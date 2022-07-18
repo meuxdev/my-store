@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct, ICreateProductDto } from '../../models/product.model';
+import {
+  IProduct,
+  ICreateProductDto,
+  IUpdateProductDto,
+} from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
-import { isThursday } from 'date-fns';
+import { isThisSecond, isThursday } from 'date-fns';
 
 @Component({
   selector: 'app-products',
@@ -54,11 +58,31 @@ export class ProductsComponent implements OnInit {
       title: 'New product',
       description: 'Description product',
       images: ['', '', ''],
-      categoryId: "1",
-      price: 1000
+      categoryId: '1',
+      price: 1000,
     };
-    this.productsService.create(product).subscribe(data => {
-        this.products.unshift(data); // adds to first position
-    })
+    this.productsService.create(product).subscribe((data) => {
+      this.products.unshift(data); // adds to first position
+    });
+  }
+
+  updateProduct() {
+    const changes: IUpdateProductDto = {
+      title: 'New updated title',
+    };
+
+
+    if (this.activeProduct) {
+      const { id } = this.activeProduct;
+      this.productsService.update(id.toString(), changes).subscribe((data) => {
+        const productIndex = this.products.findIndex(item => item.id === data.id);
+        this.products[productIndex] = data; 
+        this.activeProduct = data;
+        // console.log('Updated!!', data);
+      });
+
+
+
+    }
   }
 }
