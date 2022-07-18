@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
       this.activeProduct = d;
     });
     // this.loadMore();
+    this.loadProducts();
   }
 
   eventAddToCart(product: IProduct) {
@@ -94,7 +95,7 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  loadMore() {
+  loadProducts() {
     this.productsService.getAllProducts(this.limit, this.offset).subscribe((data) => {
       this.products = [...this.products, ...data];
     });

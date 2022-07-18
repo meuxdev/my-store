@@ -37,3 +37,22 @@
     grid-gap: 15px;
   }
 }
+
+
+
+.products--indexing{
+  border: 2px solid papayawhip;
+  padding: 1rem;
+  margin: 2rem;
+  display: flex;
+  justify-content: space-around;
+
+
+  button {
+    background-color: papayawhip;
+    font-size: 1.2rem;
+    border: 0;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+  }
+}
