@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   today = new Date();
   otherDate = new Date(2021, 1, 23);
   showProductDetail = false;
-  productDescription = '';
+  activeProduct: IProduct | null = null;
 
   constructor(
     private storeService: StoreService,
@@ -27,8 +27,8 @@ export class ProductsComponent implements OnInit {
     this.productsService.getAllProducts().subscribe((data) => {
       this.products = data;
     });
-    this.storeService.descriptionProduct$.subscribe((d) => {
-      this.productDescription = d;
+    this.storeService.activeProduct$.subscribe((d) => {
+      this.activeProduct = d;
     });
   }
 
@@ -45,6 +45,6 @@ export class ProductsComponent implements OnInit {
   }
 
   toggleProductDetail() {
-    this.productDescription = '';
+    this.storeService.nullifyDescriptionProduct();
   }
 }

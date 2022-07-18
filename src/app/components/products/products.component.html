@@ -11,9 +11,20 @@
   ></app-product>
 </section>
 
-<div [class.active]="productDescription.length > 0" class="product-detail">
-  <div>
+<div [class.active]="activeProduct" class="product-detail">
+  <div *ngIf="activeProduct">
     <button type="button" (click)="toggleProductDetail()">Close</button>
-    {{ productDescription }}
+    <h1>{{ activeProduct.title }}</h1>
+    <p>
+      {{ activeProduct.description }}
+    </p>
+
+    <swiper
+      [slidesPerView]="1"
+    >
+      <ng-template swiperSlide *ngFor="let img of activeProduct.images">
+        <img [src]="img" [alt]="activeProduct.title">
+      </ng-template>
+    </swiper>
   </div>
 </div>

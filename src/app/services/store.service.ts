@@ -13,8 +13,8 @@ export class StoreService {
   // Observable ends with $
   myCart$ = this.myCart.asObservable();
   
-  private descriptionProduct = new BehaviorSubject<string>("");
-  descriptionProduct$ = this.descriptionProduct.asObservable();
+  private activeProduct = new BehaviorSubject<IProduct|null>(null);
+  activeProduct$ = this.activeProduct.asObservable();
 
   private totalPrice: number = 0;
 
@@ -36,8 +36,12 @@ export class StoreService {
     return this.myShoppingCart;
   }
 
-  setDescriptionProduct(description: string) {
-    this.descriptionProduct.next(description);
+  setDescriptionProduct(productActive: IProduct) {
+    this.activeProduct.next(productActive);
+  }
+
+  nullifyDescriptionProduct() {
+    this.activeProduct.next(null);
   }
 
 }

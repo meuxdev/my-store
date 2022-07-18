@@ -1,8 +1,12 @@
 // Reset CSS
 @import url(./app/styles/reset.scss);
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
 // Import google fonts
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 /* You can add global styles to this file, and also import other style files */
+// @import '~swiper/swiper-bundle'; // swiper styles
 *{
   font-family: "Quicksand", sans-serif;
 }

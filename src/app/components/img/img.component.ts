@@ -113,11 +113,14 @@ export class ImgComponent
   }
 
   toggleDescription() {
+    // reset the active product
+    this.storeService.nullifyDescriptionProduct();
+
     this.productService
       .getProduct(this.idProduct)
-      .subscribe(({ description }) => {
-        if (description.length > 0)
-          this.storeService.setDescriptionProduct(description);
+      .subscribe((product) => {
+        if (product)
+          this.storeService.setDescriptionProduct(product);
       });
   }
 }
