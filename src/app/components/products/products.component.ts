@@ -6,7 +6,6 @@ import {
 } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
-import { isThisSecond, isThursday } from 'date-fns';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +19,8 @@ export class ProductsComponent implements OnInit {
   otherDate = new Date(2021, 1, 23);
   showProductDetail = false;
   activeProduct: IProduct | null = null;
+  limit = 10;
+  offset = 0;
 
   constructor(
     private storeService: StoreService,
@@ -29,12 +30,10 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsService.getAllProducts().subscribe((data) => {
-      this.products = data;
-    });
     this.storeService.activeProduct$.subscribe((d) => {
       this.activeProduct = d;
     });
+    // this.loadMore();
   }
 
   eventAddToCart(product: IProduct) {
@@ -71,18 +70,35 @@ export class ProductsComponent implements OnInit {
       title: 'New updated title',
     };
 
-
     if (this.activeProduct) {
       const { id } = this.activeProduct;
       this.productsService.update(id.toString(), changes).subscribe((data) => {
-        const productIndex = this.products.findIndex(item => item.id === data.id);
-        this.products[productIndex] = data; 
+        const productIndex = this.products.findIndex(
+          (item) => item.id === data.id
+        );
+        this.products[productIndex] = data;
         this.activeProduct = data;
         // console.log('Updated!!', data);
       });
-
-
-
     }
+  }
+
+  deleteProduct() {
+    if (this.activeProduct) {
+      const { id } = this.activeProduct;
+      this.productsService.delete(id.toString()).subscribe((data) => {
+        const productIndex = this.products.findIndex((item) => item.id === id);
+        this.products.splice(productIndex, 1);
+        this.activeProduct = null;
+      });
+    }
+  }
+
+  loadMore() {
+    this.productsService.getAllProducts(this.limit, this.offset).subscribe((data) => {
+      this.products = [...this.products, ...data];
+    });
+
+    this.offset += this.limit;
   }
 }

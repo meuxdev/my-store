@@ -67,14 +67,16 @@ export class ImgComponent
     //   this.counter += 1;
     //   console.log('run counter');
     // }, 1000);
-    console.log('Init State');
+    // console.log('Init State');
+    null;
   }
 
   ngAfterViewInit(): void {
     // after rendering.
     // handler children.
     // Components children had already been rendering.
-    console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
+    // console.log(`ngAfterViewInit...\n imgValue => ${this.img}`);
+    null;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -88,10 +90,10 @@ export class ImgComponent
     const {
       setImg: { currentValue, previousValue },
     } = changes;
-    console.log('Current Value: ', currentValue);
-    console.log('Prev Value: ', previousValue);
+    // console.log('Current Value: ', currentValue);
+    // console.log('Prev Value: ', previousValue);
 
-    console.log(`ngOnChange...\n imgValue = ${this.img}`);
+    // console.log(`ngOnChange...\n imgValue = ${this.img}`);
   }
 
   ngOnDestroy(): void {
@@ -100,7 +102,8 @@ export class ImgComponent
     // was destroyed.
     // Kill all events.
     // window.clearInterval(this.counterFuncRef);
-    console.log('Destroying the component...');
+    // console.log('Destroying the component...');
+    null;
   }
 
   imgError() {
