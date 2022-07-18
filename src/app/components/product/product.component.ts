@@ -10,9 +10,12 @@ export class ProductComponent {
   @Input() product: IProduct = {
     id: 0,
     title: 'Default Product',
-    image: './DefaultPath',
+    images: ['./DefaultPath', './DefaultPath', './DefaultPath'],
     price: 0,
-    category: 'Random category',
+    category: {
+      id: "111",
+      name: 'Random category'
+    },
     description: 'This is a random description',
   };
 
@@ -23,4 +26,5 @@ export class ProductComponent {
   addToCart() {
     this.addedProduct.emit(this.product);
   }
+
 }

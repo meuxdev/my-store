@@ -10,3 +10,10 @@
     (addedProduct)="eventAddToCart($event)"
   ></app-product>
 </section>
+
+<div [class.active]="productDescription.length > 0" class="product-detail">
+  <div>
+    <button type="button" (click)="toggleProductDetail()">Close</button>
+    {{ productDescription }}
+  </div>
+</div>

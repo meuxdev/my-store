@@ -1,39 +1,57 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
-  styleUrls: ['./img.component.scss']
+  styleUrls: ['./img.component.scss'],
 })
-export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-
+export class ImgComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   img: string = '';
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('img')
   set setImg(newImg: string) {
     this.img = newImg;
-    // apply code 
+    // apply code
     // console.log("Changing Just img", this.img);
-  };
+  }
+
+  @Input() idProduct = '';
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input("name") firstName: string = "";
+  @Input('name') firstName: string = '';
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input("hello") set alertHello(firstName: string) {
+  @Input('hello') set alertHello(firstName: string) {
     alert(`Hello ${firstName}`);
   }
 
   @Output() loaded = new EventEmitter<string>();
 
-  readonly imgDefault: string = "./assets/images/bike.jpg"
+  readonly imgDefault: string = './assets/images/bike.jpg';
 
   counter: number = 0;
 
   // counterFuncRef: number | undefined;
 
-  constructor() {
+  constructor(
+    private productService: ProductsService,
+    private storeService: StoreService
+  ) {
     // DO NOT run async.
     // before render
     // runs once every instance created.
@@ -42,15 +60,14 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   ngOnInit(): void {
     // Before rendering
-    // RUN async functions fetch. Promises. etc. 
+    // RUN async functions fetch. Promises. etc.
     // Runs only once
     // console.log(`ngOnInit...\n imgValue => ${this.img}`);
     // this.counterFuncRef = window.setInterval(() => {
     //   this.counter += 1;
     //   console.log('run counter');
     // }, 1000);
-    console.log("Init State");
-    
+    console.log('Init State');
   }
 
   ngAfterViewInit(): void {
@@ -63,14 +80,16 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   ngOnChanges(changes: SimpleChanges): void {
     // before render
     // changes on inputs -- multiple times
-    // runs every time the input status this will run. 
+    // runs every time the input status this will run.
 
-    if(changes){
-    // code to review each change
+    if (changes) {
+      // code to review each change
     }
-    const { setImg: { currentValue, previousValue } } = changes;
-    console.log("Current Value: ", currentValue);
-    console.log("Prev Value: ", previousValue);
+    const {
+      setImg: { currentValue, previousValue },
+    } = changes;
+    console.log('Current Value: ', currentValue);
+    console.log('Prev Value: ', previousValue);
 
     console.log(`ngOnChange...\n imgValue = ${this.img}`);
   }
@@ -81,11 +100,8 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // was destroyed.
     // Kill all events.
     // window.clearInterval(this.counterFuncRef);
-    console.log("Destroying the component...");
-
+    console.log('Destroying the component...');
   }
-
-
 
   imgError() {
     this.img = this.imgDefault;
@@ -96,4 +112,12 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     this.loaded.emit(this.img);
   }
 
+  toggleDescription() {
+    this.productService
+      .getProduct(this.idProduct)
+      .subscribe(({ description }) => {
+        if (description.length > 0)
+          this.storeService.setDescriptionProduct(description);
+      });
+  }
 }

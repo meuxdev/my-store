@@ -12,6 +12,9 @@ export class StoreService {
   private myCart = new BehaviorSubject<IProduct[]>([]);
   // Observable ends with $
   myCart$ = this.myCart.asObservable();
+  
+  private descriptionProduct = new BehaviorSubject<string>("");
+  descriptionProduct$ = this.descriptionProduct.asObservable();
 
   private totalPrice: number = 0;
 
@@ -32,4 +35,9 @@ export class StoreService {
   getShoppingCart() : IProduct[] {
     return this.myShoppingCart;
   }
+
+  setDescriptionProduct(description: string) {
+    this.descriptionProduct.next(description);
+  }
+
 }

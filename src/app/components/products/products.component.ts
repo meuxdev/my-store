@@ -10,11 +10,11 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
-
   shoppingCart!: IProduct[];
-
   today = new Date();
   otherDate = new Date(2021, 1, 23);
+  showProductDetail = false;
+  productDescription = '';
 
   constructor(
     private storeService: StoreService,
@@ -24,9 +24,12 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsService.getAllProducts().subscribe(data =>  {
+    this.productsService.getAllProducts().subscribe((data) => {
       this.products = data;
-    })
+    });
+    this.storeService.descriptionProduct$.subscribe((d) => {
+      this.productDescription = d;
+    });
   }
 
   eventAddToCart(product: IProduct) {
@@ -39,5 +42,9 @@ export class ProductsComponent implements OnInit {
 
   getTotalItems(): number {
     return this.storeService.getShoppingCart().length;
+  }
+
+  toggleProductDetail() {
+    this.productDescription = '';
   }
 }
