@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../../models/product.model';
+import { IProduct, ICreateProductDto } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
+import { isThursday } from 'date-fns';
 
 @Component({
   selector: 'app-products',
@@ -46,5 +47,18 @@ export class ProductsComponent implements OnInit {
 
   toggleProductDetail() {
     this.storeService.nullifyDescriptionProduct();
+  }
+
+  createNewProduct() {
+    const product: ICreateProductDto = {
+      title: 'New product',
+      description: 'Description product',
+      images: ['', '', ''],
+      categoryId: "1",
+      price: 1000
+    };
+    this.productsService.create(product).subscribe(data => {
+        this.products.unshift(data); // adds to first position
+    })
   }
 }

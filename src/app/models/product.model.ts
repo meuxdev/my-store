@@ -7,6 +7,10 @@ export interface IProduct {
     category: ICategory;
 }
 
+export interface ICreateProductDto extends Omit<IProduct, 'id' | 'category'> {
+    categoryId: string;
+}
+
 export interface ICategory {
     id: string;
     name: string;
