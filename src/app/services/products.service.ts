@@ -14,8 +14,7 @@ import { StoreService } from './store.service';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  private baseURL: string =
-    'https://young-sands-07814.herokuapp.com/api/products';
+  private baseURL: string = '/api/products';
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
