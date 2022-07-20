@@ -60,10 +60,9 @@ export class StoreService {
     this.resetErrorMessage(ms);
   }
 
-  resetErrorMessage(ms: number) {
+  private resetErrorMessage(ms: number) {
     setTimeout(() => {
       this.errorMsg.next('');
       this.appStatus.next(TStatusDetails.Init);
-    }, ms)
-  }
+    }, ms)}
 }
