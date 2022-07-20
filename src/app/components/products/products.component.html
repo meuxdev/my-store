@@ -1,9 +1,10 @@
 <button type="button" (click)="createNewProduct()">Create product</button>
-<h1>{{ shoppingCart.length }} Total Price: {{ getTotalPrice() }}</h1>
+<!-- <h1>{{ shoppingCart.length }} Total Price: {{ getTotalPrice() }}</h1>
 <p>Today: {{ today | date: "short" }}</p>
 <p>My pipe: {{ today | timeAgo }}</p>
 <p>Other date: {{ otherDate | date: "yy.dd.MM" }}</p>
-<p>{{ "HoLa COmo EsTaS" | uppercase }}</p>
+<p>{{ "HoLa COmo EsTaS" | uppercase }}</p> -->
+<h2 [class.hide]="status !== 'Error'" *ngIf="status === 'Error'" class="error">{{ msgError }}</h2>
 <section class="products--grid">
   <app-product
     [product]="product"
@@ -16,23 +17,24 @@
 </div>
 
 <div [class.active]="activeProduct" class="product-detail">
-  <div *ngIf="activeProduct">
-    <button type="button" (click)="toggleProductDetail()">Close</button>
-    <h1>{{ activeProduct.title }}</h1>
-    <p>
-      {{ activeProduct.description }}
-    </p>
-
-    <swiper
-      [slidesPerView]="1"
-    >
-      <ng-template swiperSlide *ngFor="let img of activeProduct.images">
-        <img [src]="img" [alt]="activeProduct.title">
-      </ng-template>
-    </swiper>
-
-    <button type="button" (click)="updateProduct()">Edit</button>
-    <button type="button" (click)="deleteProduct()">Delete</button>
+  <div *ngIf="status === 'Loading'; else productLoaded">
+    <h1>Loading...</h1>
   </div>
-</div>
+  <ng-template #productLoaded>
+    <div *ngIf="activeProduct">
+      <button type="button" (click)="closeProductDetail()">Close</button>
+      <h1>{{ activeProduct.title }}</h1>
+      <p>
+        {{ activeProduct.description }}
+      </p>
+      <swiper [slidesPerView]="1">
+        <ng-template swiperSlide *ngFor="let img of activeProduct.images">
+          <img [src]="img" [alt]="activeProduct.title" />
+        </ng-template>
+      </swiper>
 
+      <button type="button" (click)="updateProduct()">Edit</button>
+      <button type="button" (click)="deleteProduct()">Delete</button>
+    </div>
+  </ng-template>
+</div>

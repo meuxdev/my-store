@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../models/product.model';
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from 'rxjs';
+import { TStatusDetails } from '../types/statusDetail';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,15 @@ export class StoreService {
   private myCart = new BehaviorSubject<IProduct[]>([]);
   // Observable ends with $
   myCart$ = this.myCart.asObservable();
-  
-  private activeProduct = new BehaviorSubject<IProduct|null>(null);
+
+  private activeProduct = new BehaviorSubject<IProduct | null>(null);
   activeProduct$ = this.activeProduct.asObservable();
+
+  private appStatus = new BehaviorSubject<TStatusDetails>(TStatusDetails.Init);
+  appStatus$ = this.appStatus.asObservable();
+
+  private errorMsg = new BehaviorSubject<string>('');
+  errorMsg$ = this.errorMsg.asObservable();
 
   private totalPrice: number = 0;
 
@@ -32,7 +39,7 @@ export class StoreService {
     return this.totalPrice;
   }
 
-  getShoppingCart() : IProduct[] {
+  getShoppingCart(): IProduct[] {
     return this.myShoppingCart;
   }
 
@@ -44,4 +51,19 @@ export class StoreService {
     this.activeProduct.next(null);
   }
 
+  updateAppStatus(newStatus: TStatusDetails) {
+    this.appStatus.next(newStatus);
+  }
+
+  logErrorMessage(msg: string, ms: number) {
+    this.errorMsg.next(msg);
+    this.resetErrorMessage(ms);
+  }
+
+  resetErrorMessage(ms: number) {
+    setTimeout(() => {
+      this.errorMsg.next('');
+      this.appStatus.next(TStatusDetails.Init);
+    }, ms)
+  }
 }

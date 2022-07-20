@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { retry } from 'rxjs/operators';
+import {
+  HttpClient,
+  HttpParams,
+  HttpErrorResponse,
+  HttpStatusCode,
+} from '@angular/common/http';
+import { retry, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import {
   IProduct,
   ICreateProductDto,
   IUpdateProductDto,
 } from '../models/product.model';
-import { environment } from "../../environments/environment";
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +37,22 @@ export class ProductsService {
   }
 
   getProduct(id: string) {
-    return this.http.get<IProduct>(`${this.baseURL}/${id}`);
+    return this.http.get<IProduct>(`${this.baseURL}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === HttpStatusCode.InternalServerError) {
+          return throwError(() => new Error('Ups! internal error'));
+        }
+        if (error.status === HttpStatusCode.NotFound) {
+          return throwError(() => new Error('The product does not exists'));
+        }
+        if( error.status === HttpStatusCode.Unauthorized) {
+          return throwError(() => new Error('Ups! Logging please.'));
+          
+        }
+
+        return throwError(() => new Error('Ups something Went wrong'));
+      })
+    );
   }
 
   create(dto: ICreateProductDto) {

@@ -8,11 +8,26 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  transition: all ease-out .5s;
+  transition: all ease-out 0.5s;
   transform: translateX(100%);
-  &.active{
+  &.active {
     transform: translateX(0);
   }
+}
+
+.error {
+  background-color: rgba(108, 0, 0, 1);
+  font-size: 1.2rem;
+  padding: 1.3rem;
+  position: fixed;
+  width: 50%;
+  top: 10%;
+  right: 0;
+  color: white;
+  text-align: center;
+  transition: all ease-in 2s;
+  z-index: 10;
+
 }
 
 .products--grid {
@@ -38,15 +53,12 @@
   }
 }
 
-
-
-.products--indexing{
+.products--indexing {
   border: 2px solid papayawhip;
   padding: 1rem;
   margin: 2rem;
   display: flex;
   justify-content: space-around;
-
 
   button {
     background-color: papayawhip;

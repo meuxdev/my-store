@@ -6,6 +6,7 @@ import {
 } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
+import { TStatusDetails } from 'src/app/types/statusDetail';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +22,8 @@ export class ProductsComponent implements OnInit {
   activeProduct: IProduct | null = null;
   limit = 10;
   offset = 0;
+  status!: TStatusDetails;
+  msgError!: string;
 
   constructor(
     private storeService: StoreService,
@@ -33,6 +36,14 @@ export class ProductsComponent implements OnInit {
     this.storeService.activeProduct$.subscribe((d) => {
       this.activeProduct = d;
     });
+
+    this.storeService.appStatus$.subscribe((status) => {
+      this.status = status;
+    });
+
+    this.storeService.errorMsg$.subscribe((msg) => {
+      this.msgError = msg;
+    })
     // this.loadMore();
     this.loadProducts();
   }
@@ -49,7 +60,7 @@ export class ProductsComponent implements OnInit {
     return this.storeService.getShoppingCart().length;
   }
 
-  toggleProductDetail() {
+  closeProductDetail() {
     this.storeService.nullifyDescriptionProduct();
   }
 
@@ -96,9 +107,11 @@ export class ProductsComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productsService.getAllProducts(this.limit, this.offset).subscribe((data) => {
-      this.products = [...this.products, ...data];
-    });
+    this.productsService
+      .getAllProducts(this.limit, this.offset)
+      .subscribe((data) => {
+        this.products = [...this.products, ...data];
+      });
 
     this.offset += this.limit;
   }

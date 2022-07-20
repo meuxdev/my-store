@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
+import { TStatusDetails } from '../../types/statusDetail';
 
 @Component({
   selector: 'app-img',
@@ -45,6 +46,8 @@ export class ImgComponent
   readonly imgDefault: string = './assets/images/bike.jpg';
 
   counter: number = 0;
+
+  statusDetail: TStatusDetails = TStatusDetails.Init;
 
   // counterFuncRef: number | undefined;
 
@@ -115,15 +118,22 @@ export class ImgComponent
     this.loaded.emit(this.img);
   }
 
-  toggleDescription() {
+  getDescription() {
     // reset the active product
-    this.storeService.nullifyDescriptionProduct();
+    this.storeService.nullifyDescriptionProduct(); // close any opened
+    this.storeService.updateAppStatus(TStatusDetails.Loading);
 
-    this.productService
-      .getProduct(this.idProduct)
-      .subscribe((product) => {
-        if (product)
-          this.storeService.setDescriptionProduct(product);
-      });
+    this.productService.getProduct('12312312').subscribe({
+      next: (product) => {
+        this.storeService.setDescriptionProduct(product);
+        setTimeout(() => {
+          this.storeService.updateAppStatus(TStatusDetails.Success);
+        }, 2000);
+      },
+      error: (err) => {
+        this.storeService.updateAppStatus(TStatusDetails.Error);
+        this.storeService.logErrorMessage(err, 3000);
+      },
+    });
   }
 }
