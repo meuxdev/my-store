@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { retry } from 'rxjs/operators';
 import {
   IProduct,
   ICreateProductDto,
@@ -14,7 +15,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   private baseURL: string =
-    'https://young-sands-07814.herokuapp.com/api/products';
+    'https://young-sands-07814.herokuppapp.com/api/products';
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
@@ -25,8 +26,9 @@ export class ProductsService {
       params = params.set('offset', offset);
     }
 
-    console.log(params);
-    return this.http.get<IProduct[]>(`${this.baseURL}`, { params });
+    return this.http
+      .get<IProduct[]>(`${this.baseURL}`, { params })
+      .pipe(retry(3));
   }
 
   getProduct(id: string) {
