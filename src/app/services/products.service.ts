@@ -15,7 +15,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   private baseURL: string =
-    'https://young-sands-07814.herokuppapp.com/api/products';
+    'https://young-sands-07814.herokuapp.com/api/products';
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
