@@ -6,7 +6,7 @@ import {
   ICreateProductDto,
   IUpdateProductDto,
 } from '../models/product.model';
-import { StoreService } from './store.service';
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ import { StoreService } from './store.service';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  private baseURL: string = '/api/products';
+  private baseURL: string = `${environment.API_URL}/api/products`;
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
