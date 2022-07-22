@@ -9,6 +9,7 @@
   </ng-template>
   <!-- <img width="200px" [src]="product.img" [alt]="product.name"/> -->
   <h2 appHighlight>{{ product.price | currency: "MXN" }}</h2>
+  <p *ngIf="product.taxes">{{ product.taxes }}</p>
   <p>{{ product.title | vocalsChange }}</p>
   <button type="button" (click)="addToCart()">Add to Cart</button>
 </div>

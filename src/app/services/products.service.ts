@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
   HttpStatusCode,
 } from '@angular/common/http';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import {
   IProduct,
@@ -31,9 +31,17 @@ export class ProductsService {
       params = params.set('offset', offset);
     }
 
-    return this.http
-      .get<IProduct[]>(`${this.baseURL}`, { params })
-      .pipe(retry(3));
+    return this.http.get<IProduct[]>(`${this.baseURL}`, { params }).pipe(
+      retry(3),
+      map((products) =>
+        products.map((product) => {
+          return {
+            ...product,
+            taxes: 0.19 * product.price,
+          };
+        })
+      )
+    );
   }
 
   getProduct(id: string) {
@@ -45,9 +53,8 @@ export class ProductsService {
         if (error.status === HttpStatusCode.NotFound) {
           return throwError(() => new Error('The product does not exists'));
         }
-        if( error.status === HttpStatusCode.Unauthorized) {
+        if (error.status === HttpStatusCode.Unauthorized) {
           return throwError(() => new Error('Ups! Logging please.'));
-          
         }
 
         return throwError(() => new Error('Ups something Went wrong'));

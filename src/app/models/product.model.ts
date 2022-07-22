@@ -5,6 +5,8 @@ export interface IProduct {
   price: number;
   description: string;
   category: ICategory;
+  // calculated from frontend
+  taxes?: number;
 }
 
 export interface ICreateProductDto extends Omit<IProduct, 'id' | 'category'> {
