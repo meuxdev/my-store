@@ -4,6 +4,9 @@ import {
   ICreateProductDto,
   IUpdateProductDto,
 } from '../../models/product.model';
+
+import { switchMap } from 'rxjs/operators'; // .then operator from promises
+import { zip } from 'rxjs'; // .then operator from promises
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
 import { TStatusDetails } from 'src/app/types/statusDetail';
@@ -43,7 +46,7 @@ export class ProductsComponent implements OnInit {
 
     this.storeService.errorMsg$.subscribe((msg) => {
       this.msgError = msg;
-    })
+    });
     // this.loadMore();
     this.loadProducts();
   }
@@ -114,5 +117,18 @@ export class ProductsComponent implements OnInit {
       });
 
     this.offset += this.limit;
+  }
+
+  provingMultiplesSubscribes(id: string) {
+    this.productsService.fetchThenUpdateThenCreate(id).subscribe((data) => {
+      console.log(data);
+    });
+
+    this.productsService
+      .fetchAndUpdate(id, { title: 'new' })
+      .subscribe((responses) => {
+        const productGet = responses[0];
+        const productUpdated = responses[1];
+      });
   }
 }

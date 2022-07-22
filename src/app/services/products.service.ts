@@ -5,8 +5,8 @@ import {
   HttpErrorResponse,
   HttpStatusCode,
 } from '@angular/common/http';
-import { retry, catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { retry, catchError, map, switchMap } from 'rxjs/operators';
+import { throwError, zip } from 'rxjs';
 import {
   IProduct,
   ICreateProductDto,
@@ -83,5 +83,26 @@ export class ProductsService {
     return this.http.get<IProduct[]>(this.baseURL, {
       params: { limit, offset },
     });
+  }
+
+  fetchAndUpdate(id: string, dto: IUpdateProductDto) {
+    return zip(this.getProduct(id), this.update(id, dto));
+  }
+
+  fetchThenUpdateThenCreate(id: string) {
+    return this.getProduct(id).pipe(
+      switchMap((p) =>
+        // updates new product from the one that we get.
+        this.update(p.id.toString(), { title: 'Change' })
+      ),
+      switchMap((p) => {
+        // creates new product from updated
+        const newProduct: ICreateProductDto = {
+          ...p,
+          categoryId: 'Random ID',
+        };
+        return this.create(newProduct);
+      })
+    );
   }
 }
