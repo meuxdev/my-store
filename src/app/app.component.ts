@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IProduct } from "./models/product.model";
-
+import { AuthService } from '@services/auth.service';
+import { UsersService } from '@services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +8,45 @@ import { IProduct } from "./models/product.model";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
-  imgParent: string = "https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/Screenshot from 2022-04-05 22-42-58.png";
+  imgParent: string =
+    'https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/Screenshot from 2022-04-05 22-42-58.png';
   // imgParent: string = "";
+
+  constructor(
+    private authService: AuthService,
+    private usersService: UsersService
+  ) {}
 
   showImage = true;
 
-
-
   onLoaded(img: string) {
-    console.log("Log Padre", img);
+    console.log('Log Padre', img);
   }
 
   toggleChangeImg() {
     this.showImage = !this.showImage;
+  }
+
+  createUser() {
+    this.usersService
+      .create({
+        email: 'alejandroanso@mailrandom.com',
+        name: 'alejandro anso',
+        password: '123456',
+      })
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+
+  login() {
+    this.authService.login('alejandroanso@mailrandom.com', '123456').subscribe({
+      next: (response) => {
+        console.log(response.access_token);
+      },
+      error: (error) => {
+        console.log('Something went wrong - ', error);
+      },
+    });
   }
 }
