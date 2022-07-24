@@ -15,6 +15,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { VocalsChangePipe } from './pipes/vocals-change.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { TokenInterceptor } from '@interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,11 @@ import { HighlightDirective } from './directives/highlight.directive';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TimeInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true,
     },
   ],

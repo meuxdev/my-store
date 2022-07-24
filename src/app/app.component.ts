@@ -56,7 +56,7 @@ export class AppComponent {
   }
 
   getProfile() {
-    this.authService.profile(this.token).subscribe({
+    this.authService.profile().subscribe({
       next: (user: User) => {
         console.log(user);
         this.usersService.updateUserProfile(user);
