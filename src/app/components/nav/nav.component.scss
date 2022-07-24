@@ -26,6 +26,11 @@
   //   }
   .header-right {
     float: right;
+
+    strong {
+      font-weight: bolder;
+      color: black;
+    }
   }
 }
 
@@ -54,7 +59,7 @@
   flex-direction: column;
   text-align: center;
   transform: translateX(-100%);
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 0.5s;
 
   li {
     list-style: none;
@@ -76,8 +81,8 @@
     background-color: aliceblue;
 
     &:hover {
-       cursor: pointer; 
-       transform: scale(1.2);
+      cursor: pointer;
+      transform: scale(1.2);
     }
   }
 

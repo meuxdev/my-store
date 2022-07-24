@@ -6,3 +6,10 @@ export interface User {
 }
 
 export interface CreateUserDto extends Omit<User, 'id'> {}
+
+export const EmptyUser = {
+  email: '',
+  name: '',
+  id: '',
+  password: '',
+};
