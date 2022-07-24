@@ -17,9 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     request = this.addToken(request);
-    return next
-      .handle(request)
-      .pipe(tap((response) => console.log(request.headers)));
+    return next.handle(request);
   }
 
   private addToken(request: HttpRequest<unknown>) {

@@ -13,6 +13,7 @@ import {
   IUpdateProductDto,
 } from '../models/product.model';
 import { environment } from '../../environments/environment';
+import { checkTime } from '@interceptor/time.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -31,17 +32,19 @@ export class ProductsService {
       params = params.set('offset', offset);
     }
 
-    return this.http.get<IProduct[]>(`${this.baseURL}`, { params }).pipe(
-      retry(3),
-      map((products) =>
-        products.map((product) => {
-          return {
-            ...product,
-            taxes: 0.19 * product.price,
-          };
-        })
-      )
-    );
+    return this.http
+      .get<IProduct[]>(`${this.baseURL}`, { params, context: checkTime() }) // enable context for the interceptor
+      .pipe(
+        retry(3),
+        map((products) =>
+          products.map((product) => {
+            return {
+              ...product,
+              taxes: 0.19 * product.price,
+            };
+          })
+        )
+      );
   }
 
   getProduct(id: string) {
