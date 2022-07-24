@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@services/auth.service';
 import { UsersService } from '@services/users.service';
 import { User } from '@models/user.model';
+import { TokenService } from '@services/token.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   imgParent: string =
     'https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/Screenshot from 2022-04-05 22-42-58.png';
 
@@ -16,8 +17,15 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private tokenService: TokenService
   ) {}
+
+  ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.getProfile();
+    }
+  }
 
   showImage = true;
 
@@ -58,7 +66,6 @@ export class AppComponent {
   getProfile() {
     this.authService.profile().subscribe({
       next: (user: User) => {
-        console.log(user);
         this.usersService.updateUserProfile(user);
       },
       error: (error) => {
