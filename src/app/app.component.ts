@@ -3,6 +3,7 @@ import { AuthService } from '@services/auth.service';
 import { UsersService } from '@services/users.service';
 import { User } from '@models/user.model';
 import { TokenService } from '@services/token.service';
+import { FilesService } from '@services/files.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private usersService: UsersService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private fileService: FilesService
   ) {}
 
   ngOnInit(): void {
@@ -76,5 +78,15 @@ export class AppComponent implements OnInit {
 
   loginAndGetProfile() {
     this.authService.login('alejandroanso@mailrandom.com', '123456');
+  }
+
+  downloadPdf() {
+    this.fileService
+      .getFile(
+        'MyPdfDownloaded.pdf',
+        'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf',
+        'application/pdf'
+      )
+      .subscribe();
   }
 }
