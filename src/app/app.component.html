@@ -8,12 +8,13 @@
 ></app-img> -->
 
 <app-nav></app-nav>
-<button type="button" (click)="createUser()">Create user</button>
+<!-- <button type="button" (click)="createUser()">Create user</button>
 <button type="button" (click)="loginAndGetProfile()">Login user</button>
 <button type="button" (click)="getProfile()">Get Profile</button>
 <button type="button" (click)="downloadPdf()">Download PDF</button>
 <input type="file" (change)="onUpload($event)" />
-<img *ngIf="imageRoute" [src]="imageRoute" />
+<img *ngIf="imageRoute" [src]="imageRoute" /> -->
+<router-outlet></router-outlet>
 
 <!-- <a href="./asstets/files/texto.txt" download> Download Text File </a> -->
-<app-products></app-products>
+<!-- <app-products></app-products> -->

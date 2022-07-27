@@ -123,12 +123,12 @@ export class ImgComponent
     this.storeService.nullifyDescriptionProduct(); // close any opened
     this.storeService.updateAppStatus(TStatusDetails.Loading);
 
-    this.productService.getProduct('12312312').subscribe({
+    this.productService.getProduct(this.idProduct).subscribe({
       next: (product) => {
         this.storeService.setDescriptionProduct(product);
         setTimeout(() => {
           this.storeService.updateAppStatus(TStatusDetails.Success);
-        }, 2000);
+        }, 500);
       },
       error: (err) => {
         this.storeService.updateAppStatus(TStatusDetails.Error);
