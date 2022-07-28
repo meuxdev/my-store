@@ -25,6 +25,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ErrorLoggerComponent } from './components/error-logger/error-logger.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ErrorLoggerComponent } from './components/error-logger/error-logger.com
     RecoveryComponent,
     ProfileComponent,
     ErrorLoggerComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,

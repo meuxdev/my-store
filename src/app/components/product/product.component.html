@@ -1,9 +1,11 @@
 <div>
-  <app-img
-    *ngIf="product.images.length > 0; else loading"
-    [img]="product.images[0]"
-    [idProduct]="product.id.toString()"
-  ></app-img>
+  <a [routerLink]="['/product', product.id]">
+    <app-img
+      *ngIf="product.images.length > 0; else loading"
+      [img]="product.images[0]"
+      [idProduct]="product.id.toString()"
+    ></app-img>
+  </a>
   <ng-template #loading>
     <p>Loading</p>
   </ng-template>
