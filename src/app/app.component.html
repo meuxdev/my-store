@@ -15,7 +15,10 @@
 <button type="button" (click)="downloadPdf()">Download PDF</button>
 <input type="file" (change)="onUpload($event)" />
 <img *ngIf="imageRoute" [src]="imageRoute" /> -->
-<router-outlet></router-outlet>
+<p *ngIf="appStatus === 'LOADING'; else Loaded">Loading...</p>
+<ng-template #Loaded>
+  <router-outlet></router-outlet>
+</ng-template>
 
 <!-- <a href="./asstets/files/texto.txt" download> Download Text File </a> -->
 <!-- <app-products></app-products> -->

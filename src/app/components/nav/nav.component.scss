@@ -11,6 +11,7 @@
     text-decoration: none;
     font-size: 18px;
     border-radius: 4px;
+
     &.logo {
       font-size: 25px;
       font-weight: bold;
@@ -68,8 +69,18 @@
 
   a {
     text-decoration: none;
-    color: blue;
+    color: gray;
     font-weight: bold;
+
+    &.active {
+      border-bottom: 5px solid palegoldenrod;
+      color: black;
+      font-weight: bolder;
+    }
+
+    &:hover {
+      font-size: 1.3rem;
+    }
   }
 
   button {

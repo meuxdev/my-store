@@ -7,7 +7,7 @@
         {{ userName }}
       </strong>
     </h1>
-    <a href="#" (click)="sideMenuClick()">More</a>
+    <a (click)="sideMenuClick()">More</a>
     <p>
       Cart: <span>{{ counter }}</span>
     </p>
@@ -17,13 +17,15 @@
   <button type="button" (click)="sideMenuClick()">x</button>
   <ul>
     <li>
-      <a href="">All</a>
+      <a routerLinkActive="active" routerLink="home">All</a>
     </li>
-    <li>
-      <a href="">Clothes</a>
-    </li>
-    <li>
-      <a href="">Electronics</a>
+    <li *ngFor="let category of categories">
+      <a
+        routerLinkActive="active"
+        [routerLink]="['/category', category.id]"
+        (click)="sideMenuClick()"
+        >{{ category.name }}</a
+      >
     </li>
   </ul>
 </div>

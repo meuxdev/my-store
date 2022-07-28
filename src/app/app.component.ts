@@ -4,6 +4,8 @@ import { UsersService } from '@services/users.service';
 import { User } from '@models/user.model';
 import { TokenService } from '@services/token.service';
 import { FilesService } from '@services/files.service';
+import { StoreService } from '@services/store.service';
+import { TStatusDetails } from './types/statusDetail';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +13,31 @@ import { FilesService } from '@services/files.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  token!: string;
+  appStatus!: TStatusDetails;
+
+  imageRoute = '';
   imgParent: string =
     'https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/Screenshot from 2022-04-05 22-42-58.png';
-
-  token!: string;
-  imageRoute = '';
 
   constructor(
     private authService: AuthService,
     private usersService: UsersService,
     private tokenService: TokenService,
-    private fileService: FilesService
+    private fileService: FilesService,
+    private storeService: StoreService
   ) {}
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
       this.getProfile();
     }
+
+    this.storeService.appStatus$.subscribe({
+      next: (newStatus) => {
+        this.appStatus = newStatus;
+      },
+    });
   }
 
   showImage = true;
