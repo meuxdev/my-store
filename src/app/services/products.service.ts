@@ -31,7 +31,6 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
-
     return this.http
       .get<IProduct[]>(`${this.baseURL}`, { params, context: checkTime() }) // enable context for the interceptor
       .pipe(
@@ -45,6 +44,20 @@ export class ProductsService {
           })
         )
       );
+  }
+
+  getByCategory(categoryId: string, limit?: number, offset?: number) {
+    let params = new HttpParams();
+
+    if (limit !== undefined && offset !== undefined) {
+      console.log('pasando');
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+    return this.http.get<IProduct[]>(
+      `${environment.API_URL}/api/categories/${categoryId}/products`,
+      { params }
+    );
   }
 
   getProduct(id: string) {

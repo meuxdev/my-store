@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
-import { TStatusDetails } from '../../types/statusDetail';
 
 @Component({
   selector: 'app-img',
@@ -46,10 +45,6 @@ export class ImgComponent
   readonly imgDefault: string = './assets/images/bike.jpg';
 
   counter: number = 0;
-
-  statusDetail: TStatusDetails = TStatusDetails.Init;
-
-  // counterFuncRef: number | undefined;
 
   constructor(
     private productService: ProductsService,
@@ -121,17 +116,17 @@ export class ImgComponent
   getDescription() {
     // reset the active product
     this.storeService.nullifyDescriptionProduct(); // close any opened
-    this.storeService.updateAppStatus(TStatusDetails.Loading);
+    this.storeService.updateAppStatus('LOADING');
 
     this.productService.getProduct(this.idProduct).subscribe({
       next: (product) => {
         this.storeService.setDescriptionProduct(product);
         setTimeout(() => {
-          this.storeService.updateAppStatus(TStatusDetails.Success);
+          this.storeService.updateAppStatus('DEFAULT');
         }, 500);
       },
       error: (err) => {
-        this.storeService.updateAppStatus(TStatusDetails.Error);
+        this.storeService.updateAppStatus('ERROR');
         this.storeService.logErrorMessage(err, 3000);
       },
     });

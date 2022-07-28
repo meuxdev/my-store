@@ -1,2 +1,4 @@
-<h1>Hello im the category page!</h1>
-<p>category works!</p>
+<app-products
+  [products]="products"
+  (loadMoreEmitter)="loadProductsByCategory()"
+></app-products>

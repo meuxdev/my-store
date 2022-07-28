@@ -1,12 +1,4 @@
-<button type="button" (click)="createNewProduct()">Create product</button>
-<!-- <h1>{{ shoppingCart.length }} Total Price: {{ getTotalPrice() }}</h1>
-<p>Today: {{ today | date: "short" }}</p>
-<p>My pipe: {{ today | timeAgo }}</p>
-<p>Other date: {{ otherDate | date: "yy.dd.MM" }}</p>
-<p>{{ "HoLa COmo EsTaS" | uppercase }}</p> -->
-<h2 [class.hide]="msgError.length > 0" *ngIf="status === 'Error'" class="error">
-  {{ msgError }}
-</h2>
+<!-- <button type="button" (click)="createNewProduct()">Create product</button> -->
 <section class="products--grid">
   <app-product
     [product]="product"
@@ -15,11 +7,11 @@
   ></app-product>
 </section>
 <div class="products--indexing">
-  <button (click)="loadProducts()">Load More</button>
+  <button (click)="loadMore()">Load More</button>
 </div>
 
 <div [class.active]="activeProduct" class="product-detail">
-  <div *ngIf="status === 'Loading'; else productLoaded">
+  <div *ngIf="status === 'LOADING'; else productLoaded">
     <h1>Loading...</h1>
   </div>
   <ng-template #productLoaded>

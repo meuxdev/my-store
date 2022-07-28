@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   IProduct,
   ICreateProductDto,
@@ -17,16 +17,19 @@ import { TStatusDetails } from 'src/app/types/statusDetail';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  products: IProduct[] = [];
   shoppingCart!: IProduct[];
-  today = new Date();
-  otherDate = new Date(2021, 1, 23);
+
   showProductDetail = false;
+
   activeProduct: IProduct | null = null;
-  limit = 10;
-  offset = 0;
+
   status!: TStatusDetails;
-  msgError!: string;
+
+  @Input()
+  products: IProduct[] = [];
+
+  @Output()
+  loadMoreEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private storeService: StoreService,
@@ -40,15 +43,7 @@ export class ProductsComponent implements OnInit {
       this.activeProduct = d;
     });
 
-    this.storeService.appStatus$.subscribe((status) => {
-      this.status = status;
-    });
-
-    this.storeService.errorMsg$.subscribe((msg) => {
-      this.msgError = msg;
-    });
-    // this.loadMore();
-    this.loadProducts();
+    this.storeService.appStatus$.subscribe((status) => (this.status = status));
   }
 
   eventAddToCart(product: IProduct) {
@@ -93,7 +88,6 @@ export class ProductsComponent implements OnInit {
         );
         this.products[productIndex] = data;
         this.activeProduct = data;
-        // console.log('Updated!!', data);
       });
     }
   }
@@ -109,16 +103,6 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  loadProducts() {
-    this.productsService
-      .getAllProducts(this.limit, this.offset)
-      .subscribe((data) => {
-        this.products = [...this.products, ...data];
-      });
-
-    this.offset += this.limit;
-  }
-
   provingMultiplesSubscribes(id: string) {
     this.productsService.fetchThenUpdateThenCreate(id).subscribe((data) => {
       console.log(data);
@@ -130,5 +114,9 @@ export class ProductsComponent implements OnInit {
         const productGet = responses[0];
         const productUpdated = responses[1];
       });
+  }
+
+  loadMore() {
+    this.loadMoreEmitter.emit();
   }
 }

@@ -17,7 +17,7 @@ export class StoreService {
   private activeProduct = new BehaviorSubject<IProduct | null>(null);
   activeProduct$ = this.activeProduct.asObservable();
 
-  private appStatus = new BehaviorSubject<TStatusDetails>(TStatusDetails.Init);
+  private appStatus = new BehaviorSubject<TStatusDetails>('DEFAULT');
   appStatus$ = this.appStatus.asObservable();
 
   private errorMsg = new BehaviorSubject<string>('');
@@ -56,6 +56,7 @@ export class StoreService {
   }
 
   logErrorMessage(msg: string, ms: number) {
+    this.appStatus.next('ERROR');
     this.errorMsg.next(msg);
     this.resetErrorMessage(ms);
   }
@@ -63,6 +64,7 @@ export class StoreService {
   private resetErrorMessage(ms: number) {
     setTimeout(() => {
       this.errorMsg.next('');
-      this.appStatus.next(TStatusDetails.Init);
-    }, ms)}
+      this.appStatus.next('DEFAULT');
+    }, ms);
+  }
 }
