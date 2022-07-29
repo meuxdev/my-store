@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '@services/store.service';
-import { TStatusDetails } from '@website/types/statusDetail';
+import { StoreService } from '../../../services/store.service';
+import { TStatusDetails } from '../../types/statusDetail';
 
 @Component({
   selector: 'app-layout',

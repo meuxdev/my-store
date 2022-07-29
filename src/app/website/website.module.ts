@@ -1,3 +1,5 @@
+import { SharedModule } from '../shared/shared.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
@@ -5,41 +7,26 @@ import { SwiperModule } from 'swiper/angular';
 import { WebsiteRoutingModule } from './website-routing.module';
 
 // Components
-import { ImgComponent } from '@website/components/img/img.component';
-import { ProductComponent } from '@website/components/product/product.component';
-import { ProductsComponent } from '@website/components/products/products.component';
-import { ErrorLoggerComponent } from '@website/components/error-logger/error-logger.component';
-import { NavComponent } from '@website/components/nav/nav.component';
-import { LayoutComponent } from '@website/components/layout/layout.component';
-
-// Pipes
-import { ReversePipe } from '@website/pipes/reverse.pipe';
-import { TimeAgoPipe } from '@website/pipes/time-ago.pipe';
-import { VocalsChangePipe } from '@website/pipes/vocals-change.pipe';
-
-// Directives
-import { HighlightDirective } from '@website/directives/highlight.directive';
+// import { ImgComponent } from '@website/components/img/img.component';
+// import { ProductComponent } from '@website/components/product/product.component';
+// import { ProductsComponent } from 'src/app/shared/components/products/products.component';
+// import { ErrorLoggerComponent } from '@website/components/error-logger/error-logger.component';
+import { NavComponent } from './components/nav/nav.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 // Pages
-import { ProductDetailComponent } from '@website/pages/product-detail/product-detail.component';
-import { CategoryComponent } from '@website/pages/category/category.component';
-import { MycartComponent } from '@website/pages/mycart/mycart.component';
-import { LoginComponent } from '@website/pages/login/login.component';
-import { RegisterComponent } from '@website/pages/register/register.component';
-import { RecoveryComponent } from '@website/pages/recovery/recovery.component';
-import { ProfileComponent } from '@website/pages/profile/profile.component';
-import { HomeComponent } from '@website/pages/home/home.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { MycartComponent } from './pages/mycart/mycart.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { RecoveryComponent } from './pages/recovery/recovery.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
-    ErrorLoggerComponent,
-    ImgComponent,
-    ProductComponent,
     NavComponent,
-    ReversePipe,
-    TimeAgoPipe,
-    VocalsChangePipe,
-    HighlightDirective,
     CategoryComponent,
     MycartComponent,
     LoginComponent,
@@ -47,10 +34,9 @@ import { HomeComponent } from '@website/pages/home/home.component';
     RecoveryComponent,
     ProfileComponent,
     ProductDetailComponent,
-    ProductsComponent,
     LayoutComponent,
     HomeComponent,
   ],
-  imports: [CommonModule, WebsiteRoutingModule, SwiperModule],
+  imports: [CommonModule, WebsiteRoutingModule, SwiperModule, SharedModule],
 })
 export class WebsiteModule {}
