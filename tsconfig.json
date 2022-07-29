@@ -8,6 +8,10 @@
       "@interceptor/*": ["src/app/interceptor/*"],
       "@services/*": ["src/app/services/*"],
       "@website/types/*": ["src/app/website/types/*"],
+      "@website/components/*": ["src/app/website/components/*"],
+      "@website/pipes/*": ["src/app/website/pipes/*"],
+      "@website/directives/*": ["src/app/website/directives/*"],
+      "@website/pages/*": ["src/app/website/pages/*"],
       "@cms/pages/*": ["src/app/cms/pages/*"],
       "@cms/components/*": ["src/app/cms/components/*"]
     },
