@@ -7,7 +7,9 @@
       "@models/*": ["src/app/models/*"],
       "@interceptor/*": ["src/app/interceptor/*"],
       "@services/*": ["src/app/services/*"],
-      "@website/types/*": ["src/app/website/types/*"]
+      "@website/types/*": ["src/app/website/types/*"],
+      "@cms/pages/*": ["src/app/cms/pages/*"],
+      "@cms/components/*": ["src/app/cms/components/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
