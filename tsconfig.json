@@ -5,9 +5,9 @@
     "baseUrl": "./",
     "paths": {
       "@models/*": ["src/app/models/*"],
-      "@types/*": ["src/app/types/*"],
+      "@interceptor/*": ["src/app/interceptor/*"],
       "@services/*": ["src/app/services/*"],
-      "@interceptor/*": ["src/app/interceptor/*"]
+      "@website/types/*": ["src/app/website/types/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -24,10 +24,7 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ]
+    "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

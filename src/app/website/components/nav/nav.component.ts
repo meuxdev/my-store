@@ -3,7 +3,7 @@ import { ICategory } from '@models/product.model';
 import { User } from '@models/user.model';
 import { CategoriesService } from '@services/categories.service';
 import { UsersService } from '@services/users.service';
-import { StoreService } from '../../services/store.service';
+import { StoreService } from '@services/store.service';
 
 @Component({
   selector: 'app-nav',

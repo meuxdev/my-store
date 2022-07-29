@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '@services/store.service';
-import { TStatusDetails } from 'src/app/types/statusDetail';
+import { TStatusDetails } from '@website/types/statusDetail';
 
 @Component({
   selector: 'app-error-logger',

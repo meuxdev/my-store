@@ -5,7 +5,7 @@ import { User } from '@models/user.model';
 import { TokenService } from '@services/token.service';
 import { FilesService } from '@services/files.service';
 import { StoreService } from '@services/store.service';
-import { TStatusDetails } from './types/statusDetail';
+import { TStatusDetails } from './website/types/statusDetail';
 
 @Component({
   selector: 'app-root',

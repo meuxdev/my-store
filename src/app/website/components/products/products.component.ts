@@ -3,13 +3,13 @@ import {
   IProduct,
   ICreateProductDto,
   IUpdateProductDto,
-} from '../../models/product.model';
+} from '@models/product.model';
 
-import { switchMap } from 'rxjs/operators'; // .then operator from promises
-import { zip } from 'rxjs'; // .then operator from promises
-import { StoreService } from '../../services/store.service';
-import { ProductsService } from '../../services/products.service';
-import { TStatusDetails } from 'src/app/types/statusDetail';
+// import { switchMap } from 'rxjs/operators'; // .then operator from promises
+// import { zip } from 'rxjs'; // .then operator from promises
+import { StoreService } from '@services/store.service';
+import { ProductsService } from '@services/products.service';
+import { TStatusDetails } from '@website/types/statusDetail';
 
 @Component({
   selector: 'app-products',

@@ -1,0 +1,6 @@
+<app-error-logger></app-error-logger>
+<app-nav></app-nav>
+<p *ngIf="appStatus === 'LOADING'; else Loaded">Loading...</p>
+<ng-template #Loaded>
+  <router-outlet></router-outlet>
+</ng-template>
