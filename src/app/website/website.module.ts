@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SwiperModule } from 'swiper/angular';
 
 import { WebsiteRoutingModule } from './website-routing.module';
 
@@ -21,16 +22,35 @@ import { HighlightDirective } from '@website/directives/highlight.directive';
 
 // Pages
 import { ProductDetailComponent } from '@website/pages/product-detail/product-detail.component';
-import { NotFoundComponent } from '@website/pages/not-found/not-found.component';
 import { CategoryComponent } from '@website/pages/category/category.component';
 import { MycartComponent } from '@website/pages/mycart/mycart.component';
 import { LoginComponent } from '@website/pages/login/login.component';
 import { RegisterComponent } from '@website/pages/register/register.component';
 import { RecoveryComponent } from '@website/pages/recovery/recovery.component';
 import { ProfileComponent } from '@website/pages/profile/profile.component';
+import { HomeComponent } from '@website/pages/home/home.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, WebsiteRoutingModule],
+  declarations: [
+    ErrorLoggerComponent,
+    ImgComponent,
+    ProductComponent,
+    NavComponent,
+    ReversePipe,
+    TimeAgoPipe,
+    VocalsChangePipe,
+    HighlightDirective,
+    CategoryComponent,
+    MycartComponent,
+    LoginComponent,
+    RegisterComponent,
+    RecoveryComponent,
+    ProfileComponent,
+    ProductDetailComponent,
+    ProductsComponent,
+    LayoutComponent,
+    HomeComponent,
+  ],
+  imports: [CommonModule, WebsiteRoutingModule, SwiperModule],
 })
 export class WebsiteModule {}
