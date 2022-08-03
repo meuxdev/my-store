@@ -27,4 +27,8 @@ export class UsersService {
   updateUserProfile(user: User) {
     this.userProfile.next(user);
   }
+
+  removeUserInformation() {
+    this.userProfile.next(null);
+  }
 }

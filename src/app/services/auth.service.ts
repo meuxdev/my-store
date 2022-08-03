@@ -6,6 +6,7 @@ import { User } from '@models/user.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { UsersService } from './users.service';
 import { TokenService } from '@services/token.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private usersService: UsersService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   fetchLogin(email: string, password: string) {
@@ -47,5 +49,11 @@ export class AuthService {
         },
         error: () => {},
       });
+  }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.usersService.removeUserInformation();
+    this.router.navigate(['home']);
   }
 }

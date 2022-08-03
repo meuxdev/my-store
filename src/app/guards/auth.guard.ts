@@ -7,12 +7,13 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TokenService } from '@services/token.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -26,6 +27,7 @@ export class AuthGuard implements CanActivate {
     if (token) {
       return true;
     }
+    this.router.navigate(['/home']);
     return false;
   }
 }
