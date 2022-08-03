@@ -16,7 +16,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 // Pages
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { CategoryComponent } from './pages/category/category.component';
 import { MycartComponent } from './pages/mycart/mycart.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -24,10 +23,12 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 
+// Modules
+import { CategoryModule } from './pages/category/category.module';
+
 @NgModule({
   declarations: [
     NavComponent,
-    CategoryComponent,
     MycartComponent,
     LoginComponent,
     RegisterComponent,
@@ -37,6 +38,12 @@ import { HomeComponent } from './pages/home/home.component';
     LayoutComponent,
     HomeComponent,
   ],
-  imports: [CommonModule, WebsiteRoutingModule, SwiperModule, SharedModule],
+  imports: [
+    CommonModule,
+    WebsiteRoutingModule,
+    SwiperModule,
+    SharedModule,
+    CategoryModule,
+  ],
 })
 export class WebsiteModule {}
