@@ -1,12 +1,15 @@
 <header class="header">
   <a routerLink="home" class="logo">CompanyLogo</a>
   <div class="header-right">
-    <h1 *ngIf="userName.length > 0">
-      Hello! ✌️
-      <strong> {{ userName }} </strong>
-    </h1>
+    <h1 *ngIf="user !== null; else loginButton">Hello! ✌️</h1>
+    <strong> {{ user?.name }} </strong>
+    <ng-template #loginButton>
+      <button type="button" (click)="login()">Log In</button>
+    </ng-template>
     <a (click)="sideMenuClick()">More</a>
-    <p>Cart: <span>{{ counter }}</span></p>
+    <p>
+      Cart: <span>{{ counter }}</span>
+    </p>
   </div>
 </header>
 <div class="side-menu" [class.active]="activeSideMenu">

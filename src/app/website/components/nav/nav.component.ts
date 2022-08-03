@@ -4,6 +4,7 @@ import { User } from '@models/user.model';
 import { CategoriesService } from '@services/categories.service';
 import { UsersService } from '@services/users.service';
 import { StoreService } from '@services/store.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -15,14 +16,15 @@ export class NavComponent implements OnInit {
 
   // Props initialize on the constructor.
   counter!: number;
-  userName!: string;
   categories!: ICategory[];
+  user: User | null = null;
 
   constructor(
     // Dependency injection
     private storeService: StoreService,
     private userService: UsersService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -32,8 +34,10 @@ export class NavComponent implements OnInit {
     });
 
     // Getting the user profile
-    this.userService.userProfile$.subscribe((user: User) => {
-      this.userName = user.name;
+    this.userService.userProfile$.subscribe((user: User | null) => {
+      if (user) {
+        this.user = user;
+      }
     });
 
     // Getting the categories
@@ -54,5 +58,9 @@ export class NavComponent implements OnInit {
     this.categoryService.getAll().subscribe({
       next: (categories) => (this.categories = categories),
     });
+  }
+
+  login() {
+    this.authService.login('randomemail@gmail.com', 'securepassword');
   }
 }

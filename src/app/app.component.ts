@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
         email: 'alejandroanso@mailrandom.com',
         name: 'alejandro anso',
         password: '123456',
+        role: 'admin',
       })
       .subscribe((res) => {
         console.log(res);

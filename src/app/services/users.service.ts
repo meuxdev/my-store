@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UsersService {
   private API_URL = `${environment.API_URL}/api/users`;
 
-  private userProfile = new BehaviorSubject<User>(EmptyUser);
+  private userProfile = new BehaviorSubject<User | null>(null);
 
   userProfile$ = this.userProfile.asObservable();
 
