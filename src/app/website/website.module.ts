@@ -26,6 +26,9 @@ import { HomeComponent } from './pages/home/home.component';
 // Modules
 import { CategoryModule } from './pages/category/category.module';
 
+// Strategy Quick Link
+import { QuicklinkModule } from 'ngx-quicklink';
+
 @NgModule({
   declarations: [
     NavComponent,
@@ -44,6 +47,7 @@ import { CategoryModule } from './pages/category/category.module';
     SwiperModule,
     SharedModule,
     CategoryModule,
+    QuicklinkModule,
   ],
 })
 export class WebsiteModule {}
