@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GridComponent } from '@cms/pages/grid/grid.component';
 import { TasksComponent } from '@cms/pages/tasks/tasks.component';
 import { LayoutComponent } from '@cms/components/layout/layout.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   {

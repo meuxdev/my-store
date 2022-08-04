@@ -61,7 +61,7 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this.authService.login('randomemail@gmail.com', 'securepassword');
+    this.authService.login('admin@mail.com', 'admin123');
   }
 
   logout() {
