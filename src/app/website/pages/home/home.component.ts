@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../../models/product.model';
 import { ProductsService } from '../../../services/products.service';
 import { StoreService } from '../../../services/store.service';
+import { OnExit } from '../../../guards/exit.guard';
 
 @Component({
   selector: 'app-home',

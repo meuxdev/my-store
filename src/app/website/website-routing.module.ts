@@ -14,6 +14,7 @@ import { ProfileComponent } from '@website/pages/profile/profile.component';
 
 // Guard
 import { AuthGuard } from '../guards/auth.guard';
+import { ExitGuard } from '../guards/exit.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'cart', component: MycartComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent, canDeactivate: [ExitGuard] },
       { path: 'register', component: RegisterComponent },
       {
         path: 'profile',

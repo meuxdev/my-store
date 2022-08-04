@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { of } from 'rxjs';
+import { OnExit } from 'src/app/guards/exit.guard';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnExit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  canDeactivate() {
+    const response = confirm('Want to exit?');
+    return of(response);
   }
-
 }
